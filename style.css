@@ -1,0 +1,18 @@
+body {
+    background-color: aqua;
+    display: grid;
+    place-content: center;
+}
+
+.grid {
+    background-color: coral;
+    border: 1.5px solid white;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    width: 500px;
+    height: 500px;
+    margin-top: 200px;
+}

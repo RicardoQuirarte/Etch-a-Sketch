@@ -3,8 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>Etch a Sketch</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
+        <div class="container"></div>
     </body>
+    <script>
+
+        const container = document.querySelector('.container');
+
+        function hover () {
+
+        }
+
+        for (i = 0; i < 256; i++ ) {
+        const div = document.createElement('div');
+        div.classList.add('grid');
+        div.addEventListener('mouseover', () => {
+            div.setAttribute('style', 'background-color:blue;');
+        });
+        container.appendChild(div);
+        }
+
+    </script>
 </html>
