@@ -4,26 +4,51 @@
         <meta charset="UTF-8">
         <title>Etch a Sketch</title>
         <link rel="stylesheet" href="style.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+        </style>
     </head>
     <body>
+        <button class="button-51" role="button">How many squares per side for the next game?</button>
+        <div class="title">Etch a Sketch</div>
         <div class="container"></div>
     </body>
     <script>
 
         const container = document.querySelector('.container');
+        const squares = document.querySelector('.squares');
+        const button = document.querySelector('.button-51');
 
-        function hover () {
-
-        }
-
-        for (i = 0; i < 256; i++ ) {
+        for (i = 0; i < 5 * 5; i++ ) {
         const div = document.createElement('div');
         div.classList.add('grid');
         div.addEventListener('mouseover', () => {
             div.setAttribute('style', 'background-color:blue;');
         });
+        div.addEventListener('mouseout', () => {
+            div.setAttribute('style', 'background-color:green;');
+        });
         container.appendChild(div);
         }
+
+
+        function newGrid() {
+            let request = prompt('How many quares?', 'Max of 75');
+            for (i = 0; i < request * request; i++ ) {
+            const div = document.createElement('div');
+            div.classList.add('grid');
+            div.addEventListener('mouseover', () => {
+                div.setAttribute('style', 'background-color:blue;');
+            });
+            div.addEventListener('mouseout', () => {
+                div.setAttribute('style', 'background-color:green;');
+            });
+            container.appendChild(div);
+            }
+            container.setAttribute('style', `grid-template-columns: repeat(${request}, auto);`);
+        }
+        button.addEventListener('click', newGrid)
 
     </script>
 </html>
