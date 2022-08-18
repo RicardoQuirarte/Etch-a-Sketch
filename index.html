@@ -13,6 +13,10 @@
         <button class="button-51" role="button">How many squares per side for the next game?</button>
         <div class="title">Etch a Sketch</div>
         <div class="container"></div>
+        <div class="musica">
+            <button id="music">Play music 🎶</button>
+        </div>
+        <audio id="myAudio"><source src="mario-bros.mp3"></audio>
     </body>
     <script>
 
@@ -20,35 +24,65 @@
         const squares = document.querySelector('.squares');
         const button = document.querySelector('.button-51');
 
-        for (i = 0; i < 5 * 5; i++ ) {
+        for (i = 0; i < 25 * 25; i++ ) {
         const div = document.createElement('div');
         div.classList.add('grid');
         div.addEventListener('mouseover', () => {
-            div.setAttribute('style', 'background-color:blue;');
+            div.setAttribute('style', 'background-color: blue;');
         });
         div.addEventListener('mouseout', () => {
-            div.setAttribute('style', 'background-color:green;');
+            const current = Number(div.style.opacity);
+            div.style.background = `rgb(0, 0, 0, .1);`
+            div.setAttribute('style', 'background-color: green;');
         });
         container.appendChild(div);
+        button.addEventListener('click', () => {
+            container.removeChild(div);
+        });
         }
 
-
         function newGrid() {
-            let request = prompt('How many quares?', 'Max of 75');
+            let request = prompt('How many quares?', 'Max of 100');
+            if (request > 100) {
+                const dov = document.createElement('div');
+                dov.classList.add('dov');
+                dov.textContent = 'MAXIMUM NUMBER OF SQUARES IS 100'
+                container.appendChild(dov);
+                button.addEventListener('click', () => {
+                container.removeChild(dov);
+           });
+                return
+            }
             for (i = 0; i < request * request; i++ ) {
-            const div = document.createElement('div');
-            div.classList.add('grid');
-            div.addEventListener('mouseover', () => {
-                div.setAttribute('style', 'background-color:blue;');
+            const divi = document.createElement('div');
+            divi.classList.add('grid');
+            divi.addEventListener('mouseover', () => {
+                divi.setAttribute('style', 'background-color:blue;');
             });
-            div.addEventListener('mouseout', () => {
-                div.setAttribute('style', 'background-color:green;');
+            divi.addEventListener('mouseout', () => {
+                divi.setAttribute('style', 'background-color:green;');
             });
-            container.appendChild(div);
+            container.appendChild(divi);
+            button.addEventListener('click', () => {
+            container.removeChild(divi);
+        });
             }
             container.setAttribute('style', `grid-template-columns: repeat(${request}, auto);`);
         }
-        button.addEventListener('click', newGrid)
+
+        button.addEventListener('click', newGrid);
+        music.addEventListener('click', togglePlay);
+
+
+        function togglePlay() {
+            myAudio.paused ? myAudio.play() : myAudio.pause();
+        };
+
+
+//        let rgb1 = Math.floor(Math.random() * 255);
+//        let rgb2 = Math.floor(Math.random() * 255);
+//        let rgb3 = Math.floor(Math.random() * 255);
+//        rgb(${rgb1}, ${rgb2}, ${rgb3}
 
     </script>
 </html>
